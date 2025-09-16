@@ -1,0 +1,58 @@
+.index__tabs {
+    display: flex;
+    gap: 40px;
+    font-size: 24px;
+    border-bottom: 2px solid #5F5F5F;
+    padding-left: 50px;
+    margin-top: 40px;
+}
+
+.index__tab {
+    cursor: pointer;
+    padding-bottom: 5px;
+    margin-left: 80px;
+    color: #5F5F5F;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.index__tab.active {
+    color: #FF0000;
+}
+
+.index__tab.disabled {
+    pointer-events: none;
+}
+
+.index__items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 40px;
+    padding: 50px;
+}
+
+.item-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.item-card__image {
+    background-color: #D9D9D9;
+    width: 290px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-card__image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.item-card__name {
+    font-size: 25px;
+    margin-top: 10px;
+}
