@@ -26,8 +26,13 @@
         @foreach ($items as $item)
             <a href="{{ url('/item/' . $item->id) }}" class="item-card-link">
                 <div class="item-card">
-                    <div class="item-card__image">
-                        <img src="{{ asset('storage/items-image/' . basename($item->image_path)) }}" alt="{{ $item->name }}">
+                    <div class="item-card__image-wrap {{ $item->order ? 'sold-out' : '' }}">
+                        <img src="{{ asset('storage/items-image/' . basename($item->image_path)) }}"
+                            alt="{{ $item->name }}"
+                            class="item-card__image">
+                        @if ($item->order)
+                            <div class="item-card__sold-overlay">sold</div>
+                        @endif
                     </div>
                     <div class="item-card__name">{{ $item->name }}</div>
                 </div>

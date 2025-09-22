@@ -1,35 +1,36 @@
 .header {
-    background-color: #000;
-    height: 80px;
-    padding: 0;
     display: flex;
     align-items: center;
+    height: 80px;
+    padding: 0;
+    background-color: #000;
 }
 
 .header__inner {
-    width: 95%;
-    max-width: 1540px;
-    min-width: 1400px;
-    height: 100%;
-    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 100%;
+    width: 95%;
+    max-width: 1540px;
+    min-width: 1400px;
+    margin: 0 auto;
 }
 
 .header__logo a {
-    color: #fff;
+    display: inline-block;
     font-size: 24px;
     font-weight: bold;
+    color: #fff;
     text-decoration: none;
     white-space: nowrap;
 }
 
 .header__search-form {
-    flex: 1;
-    margin: 0 40px;
     display: flex;
     justify-content: center;
+    flex: 1;
+    margin: 0 40px;
 }
 
 .header__search-input {
@@ -37,15 +38,15 @@
     max-width: 500px;
     height: 50px;
     padding: 8px 12px;
-    color: #000;
     font-size: 24px;
+    color: #000;
     border: none;
     border-radius: 5px;
 }
 
 .header__search-input::placeholder {
-    color: #000;
     padding-left: 30px;
+    color: #000;
 }
 
 .header__nav {
@@ -55,33 +56,33 @@
     white-space: nowrap;
 }
 
-.header__button-logout {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-    color: #fff;
+.header__link {
     font-size: 24px;
-    font-family: inherit;
-    cursor: pointer;
+    color: #fff;
     text-decoration: none;
 }
 
-.header__link {
-    color: #fff;
-    text-decoration: none;
+.header__button-logout {
+    padding: 0;
+    margin: 0;
     font-size: 24px;
+    font-family: inherit;
+    color: #fff;
+    background: none;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .header__button-listing {
     width: 100px;
     height: 50px;
     padding: 8px 12px;
-    background-color: #fff;
+    font-size: 24px;
     color: #000;
+    background-color: #fff;
     border: none;
     border-radius: 4px;
-    font-size: 24px;
-    text-decoration: none;
     text-align: center;
+    text-decoration: none;
 }

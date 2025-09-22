@@ -7,9 +7,13 @@
 @section('content')
 <div class="item">
     {{-- 左側: 画像 --}}
-    <div class="item__image">
+    <div class="item__image {{ $item->order ? 'sold-out' : '' }}">
         <img src="{{ asset('storage/items-image/' . basename($item->image_path)) }}" alt="{{ $item->name }}">
+        @if ($item->order)
+            <div class="item__sold-overlay">sold</div>
+        @endif
     </div>
+
 
     {{-- 右側: 商品詳細 --}}
     <div class="item__details">
@@ -63,9 +67,23 @@
 
         {{-- 商品情報 --}}
         <div class="item__info">
-            <div>商品の情報</div>
-            <p>カテゴリ: {{ optional($item->category)->name ?? '未設定' }}</p>
-            <p>商品の状態: {{ optional($item->condition)->condition ?? '未設定' }}</p>
+            <div class="item__info-title">商品の情報</div>
+
+            <div class="item__info-row">
+                <span class="item__info-label">カテゴリー</span>
+                <div class="item__category-list">
+                    @forelse ($item->categories as $category)
+                        <span class="item__category-badge">{{ $category->name }}</span>
+                    @empty
+                        <span class="item__category-none">未設定</span>
+                    @endforelse
+                </div>
+            </div>
+
+            <div class="item__info-row">
+                <span class="item__info-label">商品の状態</span>
+                <span class="item__info-status">{{ optional($item->condition)->condition ?? '未設定' }}</span>
+            </div>
         </div>
 
         {{-- コメント表示 --}}
@@ -86,10 +104,13 @@
         {{-- コメント投稿 --}}
         @auth
             {{-- ログイン済みの場合はフォームを表示 --}}
-            <form action="{{ route('comments.store', ['item' => $item->id]) }}" method="POST" class="item__comment-form">
+            <form action="{{ route('comments.store', ['item' => $item->id]) }}" method="POST" class="item__comment-form" novalidate>
                 @csrf
                 <label for="comment" class="item__comment-label">商品へのコメント</label>
-                <textarea name="comment" id="comment" rows="4" class="item__comment-textarea" required></textarea>
+                <textarea name="body" id="body" rows="4" class="item__comment-textarea"></textarea>
+                @error('body')
+                    <div class="item__comment-error">{{ $message }}</div>
+                @enderror
                 <button type="submit" class="item__comment-button">コメントを送信する</button>
             </form>
         @else

@@ -2,12 +2,13 @@
     max-width: 680px;
     margin: 80px auto;
     padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .login__title {
-    text-align: center;
     font-size: 36px;
     font-weight: bold;
+    text-align: center;
     margin-bottom: 30px;
 }
 
@@ -30,8 +31,8 @@
 }
 
 .login__error {
-    color: red;
     font-size: 24px;
+    color: red;
     margin-top: -16px;
     margin-bottom: 12px;
 }
@@ -40,20 +41,20 @@
     width: 100%;
     height: 65.25px;
     font-size: 26px;
-    background-color: #FF5555;
+    font-weight: bold;
     color: #FFFFFF;
+    background-color: #FF5555;
     border: none;
     border-radius: 5px;
-    font-weight: bold;
     margin-top: 80px;
     cursor: pointer;
 }
 
 .login__register-link {
     display: block;
-    text-align: center;
-    margin-top: 20px;
     font-size: 20px;
+    text-align: center;
     color: #0073CC;
+    margin-top: 20px;
     text-decoration: none;
 }

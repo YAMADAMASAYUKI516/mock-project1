@@ -59,7 +59,7 @@
         {{-- 建物名 --}}
         <div class="edit-profile__field">
             <label for="building_name" class="edit-profile__label">建物名</label>
-            <input type="text" id="building_name" name="address_line2" class="edit-profile__input" value="{{ old('address_line', $profile->address_line2 ?? '') }}">
+            <input type="text" id="building_name" name="address_line2" class="edit-profile__input" value="{{ old('address_line2', $profile->address_line2 ?? '') }}">
         </div>
 
         {{-- 送信ボタン --}}

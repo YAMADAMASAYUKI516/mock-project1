@@ -15,6 +15,29 @@ class CategoryItemTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $categoryItems = [
+            '腕時計' => ['ファッション', 'メンズ'],
+            'HDD' => ['家電'],
+            '玉ねぎ3束' => ['キッチン'],
+            '革靴' => ['ファッション'],
+            'ノートPC' => ['家電'],
+            'マイク' => ['家電'],
+            'ショルダーバッグ' => ['ファッション', 'レディース'],
+            'タンブラー' => ['キッチン'],
+            'コーヒーミル' => ['キッチン'],
+            'メイクセット' => ['レディース', 'コスメ'],
+        ];
+
+        foreach ($categoryItems as $itemName => $categoryNames) {
+            $item = Item::where('name', $itemName)->first();
+
+            if (!$item) {
+                continue;
+            }
+
+            $categoryIds = Category::whereIn('name', $categoryNames)->pluck('id');
+
+            $item->categories()->syncWithoutDetaching($categoryIds);
+        }
     }
 }

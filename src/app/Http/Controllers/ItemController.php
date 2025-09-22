@@ -29,10 +29,16 @@ class ItemController extends Controller
 
             $items = collect($items);
         } else {
-            $query = Item::orderBy('created_at', 'asc');
+            $query = Item::with('order')->orderBy('created_at', 'asc');
 
+            // 検索キーワードがある場合
             if ($keyword) {
                 $query->where('name', 'like', '%' . $keyword . '%');
+            }
+
+            // ログイン中であれば、自分の出品商品を除外
+            if ($user) {
+                $query->where('seller_id', '!=', $user->id);
             }
 
             $items = $query->get();
@@ -46,7 +52,7 @@ class ItemController extends Controller
 
     public function show($id)
     {
-        $item = Item::findOrFail($id);
+        $item = Item::with(['likes', 'comments.user', 'condition', 'categories'])->findOrFail($id);
         return view('item', compact('item'));
     }
 }

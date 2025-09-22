@@ -10,9 +10,9 @@
     <div class="profile__header">
         <div class="profile__avatar">
             @if (Auth::user()->profile && Auth::user()->profile->avatar_path)
-                <img src="{{ asset('storage/' . Auth::user()->profile->avatar_path) }}" alt="アバター" class="profile__avatar-image">
+                <img src="{{ asset('storage/' . Auth::user()->profile->avatar_path) }}" class="profile__avatar-image">
             @else
-                <img src="{{ asset('images/avatar_placeholder.png') }}" alt="デフォルトアバター" class="profile__avatar-image">
+                <img src="{{ asset('images/avatar_placeholder.png') }}" class="profile__avatar-image">
             @endif
         </div>
         <div class="profile__user-info">
@@ -28,15 +28,20 @@
     </div>
 
     {{-- 商品一覧 --}}
-    <div class="profile__items">
-        @foreach ($items as $item)
-            <a href="{{ route('items.show', ['id' => $item->id]) }}" class="profile__item-card">
-                <div class="profile__item-image">
-                    <img src="{{ asset('storage/items-image/' . basename($item->image_path)) }}" alt="{{ $item->name }}">
-                </div>
-                <div class="profile__item-name">{{ $item->name }}</div>
-            </a>
-        @endforeach
-    </div>
+        <div class="profile__items">
+            @foreach ($items as $item)
+                <a href="{{ route('items.show', ['id' => $item->id]) }}" class="profile__item-card">
+                    <div class="profile__item-image
+                        {{ $activeTab !== 'purchased' && $item->order ? 'sold-out' : '' }}">
+                        <img src="{{ asset('storage/items-image/' . basename($item->image_path)) }}" alt="{{ $item->name }}">
+
+                        @if ($activeTab !== 'purchased' && $item->order)
+                            <div class="profile__sold-overlay">sold</div>
+                        @endif
+                    </div>
+                    <div class="profile__item-name">{{ $item->name }}</div>
+                </a>
+            @endforeach
+        </div>
 </div>
 @endsection

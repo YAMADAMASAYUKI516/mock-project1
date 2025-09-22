@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LikeController;
@@ -54,4 +55,15 @@ Route::post('/item/{item}/comment', [CommentController::class, 'store'])->name('
 
 // 購入
 Route::get('/purchase/{item_id}', [PurchaseController::class, 'purchase'])->name('purchase');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/purchase/{item}', [PurchaseController::class, 'show'])->name('purchase.show');
+});
+Route::post('/purchase/{item}', [PurchaseController::class, 'store'])->name('purchase.store');
 
+// 住所変更
+Route::middleware(['auth'])->group(function () {
+    Route::post('/purchase/{item}', [PurchaseController::class, 'store'])->name('purchase.store');
+
+    Route::get('/address', [AddressController::class, 'edit'])->name('address.edit');
+    Route::post('/address', [AddressController::class, 'update'])->name('address.update');
+});
