@@ -44,7 +44,7 @@
                         <a class="header__link" href="{{ route('login') }}">ログイン</a>
                     @endauth
                     <a class="header__link" href="{{ route('mypage') }}">マイページ</a>
-                    <a class="header__button-listing" href="{{-- route('items.create') --}}">出品</a>
+                    <a class="header__button-listing" href="{{ route('items.create') }}">出品</a>
                 </nav>
             @endif
         </div>

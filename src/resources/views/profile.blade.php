@@ -12,7 +12,7 @@
             @if (Auth::user()->profile && Auth::user()->profile->avatar_path)
                 <img src="{{ asset('storage/' . Auth::user()->profile->avatar_path) }}" class="profile__avatar-image">
             @else
-                <img src="{{ asset('images/avatar_placeholder.png') }}" class="profile__avatar-image">
+                <div class="profile__avatar-image"></div>
             @endif
         </div>
         <div class="profile__user-info">

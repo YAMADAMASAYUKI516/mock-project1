@@ -8,6 +8,8 @@ use App\Http\Requests\PurchaseRequest;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\Profile;
+use Stripe\Stripe;
+use Stripe\Checkout\Session as CheckoutSession;
 
 class PurchaseController extends Controller
 {
@@ -33,20 +35,38 @@ class PurchaseController extends Controller
         $shipping_address1 = session("shipping_address1_{$itemId}") ?? optional($profile)->address_line1;
         $shipping_address2 = session("shipping_address2_{$itemId}") ?? optional($profile)->address_line2;
 
-        // バリデーション（念のため）
-        if (!$shipping_postal_code || !$shipping_address1) {
-            return redirect()->back()
-                ->withErrors(['配送先情報が登録されていません。'])
-                ->withInput();
-        }
-
-        Order::create([
+        $order = Order::create([
             'buyer_id' => $user->id,
             'item_id' => $item->id,
             'payment_method' => $request->payment_method,
             'shipping_postal_code' => $shipping_postal_code,
             'shipping_address1' => $shipping_address1,
             'shipping_address2' => $shipping_address2,
+            'status' => 'pending',
+        ]);
+
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        $amount = (int)$item->price;
+
+        $session = CheckoutSession::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'jpy',
+                    'product_data' => [
+                        'name' => $item->name,
+                    ],
+                    'unit_amount' => $amount,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => route('mypage') . '?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => route('purchase.store', ['item' => $item->id]),
+            'metadata' => [
+                'order_id' => $order->id,
+            ],
         ]);
 
         session()->forget([
@@ -55,6 +75,6 @@ class PurchaseController extends Controller
             "shipping_address2_{$itemId}",
         ]);
 
-        return redirect()->route('mypage');
+        return redirect($session->url);
     }
 }

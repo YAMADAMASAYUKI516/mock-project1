@@ -63,6 +63,14 @@
     margin-bottom: 30px;
 }
 
+.purchase__select-error {
+    color: red;
+    font-size: 20px;
+    margin-top: 8px;
+    margin-left: 100px;
+    margin-bottom: 16px;
+}
+
 .purchase__address {
     font-size: 20px;
     height: 58px;

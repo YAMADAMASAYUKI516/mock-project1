@@ -24,7 +24,7 @@
             <span class="item__price-tax">（税込）</span>
         </div>
 
-        {{-- ライク・コメントアイコン --}}
+        {{-- いいね・コメントアイコン --}}
         <div class="item__actions">
             @php
                 $isLiked = auth()->check() && $item->likes->contains('user_id', auth()->id());
@@ -49,13 +49,21 @@
             </div>
 
             @auth
-                <a href="{{ route('purchase', ['item_id' => $item->id]) }}" class="item__buy-button">
-                    購入手続きへ
-                </a>
+                @if ($item->order)
+                    <button class="item__buy-button item__buy-button--disabled" disabled>売り切れ</button>
+                @else
+                    <a href="{{ route('purchase.show', ['item' => $item->id]) }}" class="item__buy-button">
+                        購入手続きへ
+                    </a>
+                @endif
             @else
-                <a href="{{ route('login') }}" class="item__buy-button">
-                    購入手続きへ
-                </a>
+                @if ($item->order)
+                    <button class="item__buy-button item__buy-button--disabled" disabled>売り切れ</button>
+                @else
+                    <a href="{{ route('login') }}" class="item__buy-button">
+                        購入手続きへ
+                    </a>
+                @endif
             @endauth
         </div>
 
@@ -93,7 +101,13 @@
             @foreach ($item->comments as $comment)
                 <div class="item__comment-box">
                     <div class="item__comment-header">
-                        <div class="item__comment-icon"></div>
+                        <div class="item__comment-icon">
+                            @if ($comment->user->profile && $comment->user->profile->avatar_path)
+                                <img src="{{ asset('storage/' . $comment->user->profile->avatar_path) }}" class="item__avatar-img">
+                            @else
+                                <div class="item__avatar-img"></div>
+                            @endif
+                        </div>
                         <div class="item__comment-name">{{ $comment->user->name }}</div>
                     </div>
                     <div class="item__comment-text">{{ $comment->body }}</div>
@@ -103,8 +117,7 @@
 
         {{-- コメント投稿 --}}
         @auth
-            {{-- ログイン済みの場合はフォームを表示 --}}
-            <form action="{{ route('comments.store', ['item' => $item->id]) }}" method="POST" class="item__comment-form" novalidate>
+            <form action="{{ route('comments.store', ['item' => $item->id]) }}" method="POST" class="item__comment-form">
                 @csrf
                 <label for="comment" class="item__comment-label">商品へのコメント</label>
                 <textarea name="body" id="body" rows="4" class="item__comment-textarea"></textarea>
@@ -114,7 +127,6 @@
                 <button type="submit" class="item__comment-button">コメントを送信する</button>
             </form>
         @else
-            {{-- 未ログインの場合はログインページへのリンクボタンを同じデザインで表示 --}}
             <form class="item__comment-form">
                 <label class="item__comment-label">商品へのコメント</label>
                 <textarea rows="4" class="item__comment-textarea" disabled></textarea>
@@ -147,15 +159,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.ok) {
-                // ボタン状態切り替え
                 const newLiked = !liked;
                 button.dataset.liked = newLiked.toString();
                 button.src = newLiked
                     ? "{{ asset('images/star_filled.png') }}"
                     : "{{ asset('images/star.png') }}";
 
-                // カウント更新
-                const countSpan = button.nextElementSibling; // すぐ右の <span> を取得
+                const countSpan = button.nextElementSibling;
                 let count = parseInt(countSpan.textContent);
                 countSpan.textContent = newLiked ? count + 1 : count - 1;
             }

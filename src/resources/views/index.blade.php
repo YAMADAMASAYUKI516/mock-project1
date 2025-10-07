@@ -12,14 +12,11 @@
             class="index__tab {{ $activeTab === 'recommend' ? 'active' : '' }}">
             おすすめ
         </a>
-        @auth
-            <a href="{{ route('items.index', ['tab' => 'mylist', 'keyword' => request('keyword')]) }}"
-                class="index__tab {{ $activeTab === 'mylist' ? 'active' : '' }}">
-                マイリスト
-            </a>
-        @else
-            <span class="index__tab disabled">マイリスト</span>
-        @endauth
+
+        <a href="{{ route('items.index', ['tab' => 'mylist', 'keyword' => request('keyword')]) }}"
+            class="index__tab {{ $activeTab === 'mylist' ? 'active' : '' }}">
+            マイリスト
+        </a>
     </div>
 
     <div class="index__items">

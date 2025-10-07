@@ -34,7 +34,7 @@ class AddressRequest extends FormRequest
         return [
             'shipping_postal_code.required'    => '郵便番号を入力してください。',
             'shipping_postal_code.size'        => '郵便番号はハイフンを入れて8文字で入力してください。',
-            'shipping_address1.required'  => '住所を入力してください。',
+            'shipping_address1.required'       => '住所を入力してください。',
         ];
     }
 }

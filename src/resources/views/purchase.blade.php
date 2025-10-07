@@ -7,7 +7,8 @@
 @section('content')
 <form action="{{ route('purchase.store', ['item' => $item->id]) }}" method="POST">
     @csrf
-    <input type="hidden" name="payment_method" value="コンビニ払い" id="payment-method-hidden">
+
+    <input type="hidden" name="payment_method" value="{{ old('payment_method') }}" id="payment-method-hidden">
 
     {{-- 住所保持 --}}
     <input type="hidden" name="shipping_postal_code" value="{{ session("shipping_postal_code_{$item->id}") }}">
@@ -32,10 +33,13 @@
                 <div class="purchase__section">
                     <h3 class="purchase__section-title">支払い方法</h3>
                     <select name="payment_method" class="purchase__select" required>
-                        <option value="" disabled selected hidden>選択してください</option>
-                        <option value="コンビニ払い">コンビニ払い</option>
-                        <option value="カード支払い">カード支払い</option>
+                        <option value="" disabled {{ old('payment_method') ? '' : 'selected' }} hidden>選択してください</option>
+                        <option value="コンビニ払い" {{ old('payment_method') === 'コンビニ払い' ? 'selected' : '' }}>コンビニ払い</option>
+                        <option value="カード支払い" {{ old('payment_method') === 'カード支払い' ? 'selected' : '' }}>カード支払い</option>
                     </select>
+                    @error('payment_method')
+                        <div class="purchase__select-error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <hr>
@@ -64,6 +68,9 @@
                             配送先情報が登録されていません。
                         @endif
                     </p>
+                    @error('shipping_address')
+                        <div class="purchase__select-error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <hr>
@@ -79,7 +86,7 @@
                     <div class="purchase__summary-row">
                         <span class="purchase__summary-label">支払い方法</span>
                         <div class="purchase__summary-body">
-                            <span class="js-payment-method">コンビニ払い</span>
+                            <span class="js-payment-method">{{ old('payment_method') ?? '未選択' }}</span>
                         </div>
                     </div>
                 </div>

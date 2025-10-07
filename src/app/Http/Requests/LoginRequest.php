@@ -33,6 +33,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email.required' => 'メールアドレスを入力してください',
+            'email.email' => 'メールアドレスはemail形式で入力してください',
             'password.required' => 'パスワードを入力してください',
         ];
     }

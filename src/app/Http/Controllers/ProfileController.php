@@ -25,18 +25,15 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        // ユーザー名更新（usersテーブル）
         $user->name = $request->input('name');
         $user->save();
 
-        // プロフィールが存在すれば更新、なければ作成
         $profile = $user->profile ?? new Profile(['user_id' => $user->id]);
 
         $profile->postal_code = $request->input('postal_code');
         $profile->address_line1 = $request->input('address_line1');
         $profile->address_line2 = $request->input('address_line2');
 
-        // アバター画像がアップロードされた場合
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
             $path = $avatar->store('avatars', 'public');
