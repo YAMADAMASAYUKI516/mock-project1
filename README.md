@@ -64,18 +64,20 @@ php artisan db:seed
 php artisan storage:link
 ```
 
-9. Stripeの導入
+9. Stripe の導入
 
 ```bash
 composer require stripe/stripe-php
 ```
 
 **テスト環境の準備**
+
 1. 「.env.testing」 ファイルを「.env」からコピー
 
 ```bash
 cp .env .env.testing
 ```
+
 2. .env.testing の以下の環境変数を変更
 
 ```text
@@ -93,6 +95,7 @@ DB_PASSWORD=root
 ```
 
 3. テスト用データベースを作成
+
 ```bash
 docker-compose exec mysql bash
 mysql -u root -p
@@ -120,13 +123,12 @@ php artisan migrate --env=testing
 php artisan test
 ```
 
-## Stripeのカード情報（動作確認用）
+## Stripe のカード情報（動作確認用）
+
 ```text
-| 項目             | 値                     |
-| -------------- | --------------------- |
-| カード番号          | `4242 4242 4242 4242` |
-| 有効期限           | `12/34`（未来の任意の日付）     |
-| セキュリティコード（CVC） | `123`                 |
+カード番号：`4242 4242 4242 4242`
+有効期限：`12/34`（未来の任意の日付）
+セキュリティコード（CVC）：`123`
 ```
 
 ## 使用技術(実行環境)
