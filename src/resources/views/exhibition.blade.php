@@ -10,7 +10,6 @@
 
     <div class="exhibition-form__title">商品の出品</div>
 
-    {{-- 商品画像 --}}
     <div class="exhibition-form__section">
         <label class="exhibition-form__label">商品画像</label>
 
@@ -18,7 +17,6 @@
             <input type="file" id="imageInput" name="image_path" class="exhibition-form__file-input" accept="image/png, image/jpeg">
             <span id="imageText" class="exhibition-form__image-button">画像を選択する</span>
 
-            {{-- プレビュー画像 --}}
             <img id="imagePreview" class="exhibition-form__image-preview" alt="Preview" style="display: none;">
         </label>
 
@@ -27,12 +25,10 @@
         @enderror
     </div>
 
-    {{-- 商品の詳細 --}}
     <div class="exhibition-form__section">
         <label class="exhibition-form__sub-title">商品の詳細</label>
         <hr>
 
-        {{-- カテゴリー --}}
         <div class="exhibition-form__sub-label">カテゴリー</div>
         <div class="exhibition-form__categories">
             @foreach ($categories as $category)
@@ -51,7 +47,6 @@
             <div class="exhibition-form__error">{{ $message }}</div>
         @enderror
 
-        {{-- 商品の状態 --}}
         <div class="exhibition-form__sub-label">商品の状態</div>
         <select name="condition_id" class="exhibition-form__select" required>
             <option value="" selected hidden>選択してください</option>
@@ -68,7 +63,6 @@
 
     <hr>
 
-    {{-- 商品名と説明 --}}
     <div class="exhibition-form__section">
         <label class="exhibition-form__sub-label">商品名</label>
         <input

@@ -6,7 +6,6 @@
 
 @section('content')
 <div class="item">
-    {{-- 左側: 画像 --}}
     <div class="item__image {{ $item->order ? 'sold-out' : '' }}">
         <img src="{{ asset('storage/items-image/' . basename($item->image_path)) }}" alt="{{ $item->name }}">
         @if ($item->order)
@@ -14,8 +13,6 @@
         @endif
     </div>
 
-
-    {{-- 右側: 商品詳細 --}}
     <div class="item__details">
         <div class="item__title">{{ $item->name }}</div>
         <div class="item__brand">{{ $item->brand }}</div>
@@ -24,7 +21,6 @@
             <span class="item__price-tax">（税込）</span>
         </div>
 
-        {{-- いいね・コメントアイコン --}}
         <div class="item__actions">
             @php
                 $isLiked = auth()->check() && $item->likes->contains('user_id', auth()->id());
@@ -67,13 +63,11 @@
             @endauth
         </div>
 
-        {{-- 商品説明 --}}
         <div class="item__description">
             <div>商品説明</div>
             <p>{{ $item->description }}</p>
         </div>
 
-        {{-- 商品情報 --}}
         <div class="item__info">
             <div class="item__info-title">商品の情報</div>
 
@@ -94,7 +88,6 @@
             </div>
         </div>
 
-        {{-- コメント表示 --}}
         <div class="item__comment">
             コメント ({{ $item->comments->count() }})
 
@@ -115,7 +108,6 @@
             @endforeach
         </div>
 
-        {{-- コメント投稿 --}}
         @auth
             <form action="{{ route('comments.store', ['item' => $item->id]) }}" method="POST" class="item__comment-form">
                 @csrf

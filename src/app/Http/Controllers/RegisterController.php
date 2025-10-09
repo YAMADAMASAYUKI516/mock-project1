@@ -24,13 +24,10 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // メール認証通知を送信
         $user->sendEmailVerificationNotification();
 
-        // 一旦ログインさせる
         Auth::login($user);
 
-        // メール認証画面にリダイレクト（Fortify標準）
         return redirect()->route('verification.notice');
     }
 }

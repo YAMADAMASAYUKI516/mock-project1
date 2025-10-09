@@ -138,7 +138,6 @@
     margin-left: 50px;
 }
 
-/* メタ情報（いいね/コメント数） */
 .item__meta {
     display: flex;
     align-items: flex-start;

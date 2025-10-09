@@ -11,7 +11,6 @@
     <form action="{{ route('address.update') }}" method="POST">
         @csrf
 
-    {{-- 戻り先URLと商品IDを hidden で渡す --}}
     <input type="hidden" name="return_url" value="{{ old('return_url', url()->previous()) }}">
     <input type="hidden" name="item_id" value="{{ $item_id }}">
 

@@ -6,7 +6,6 @@
 
 @section('content')
 <div class="profile">
-    {{-- ユーザー情報 --}}
     <div class="profile__header">
         <div class="profile__avatar">
             @if (Auth::user()->profile && Auth::user()->profile->avatar_path)
@@ -21,13 +20,11 @@
         <a href="{{ route('profile.edit') }}" class="profile__edit-button">プロフィールを編集</a>
     </div>
 
-    {{-- タブ切り替え --}}
     <div class="profile__tabs">
         <a href="?tab=selling" class="profile__tab {{ $activeTab === 'selling' ? 'active' : '' }}">出品した商品</a>
         <a href="?tab=purchased" class="profile__tab {{ $activeTab === 'purchased' ? 'active' : '' }}">購入した商品</a>
     </div>
 
-    {{-- 商品一覧 --}}
         <div class="profile__items">
             @foreach ($items as $item)
                 <a href="{{ route('items.show', ['id' => $item->id]) }}" class="profile__item-card">

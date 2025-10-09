@@ -7,7 +7,6 @@
 @section('content')
 <div class="index">
     <div class="index__tabs">
-        {{-- タブ切り替え --}}
         <a href="{{ route('items.index', ['tab' => 'recommend', 'keyword' => request('keyword')]) }}"
             class="index__tab {{ $activeTab === 'recommend' ? 'active' : '' }}">
             おすすめ

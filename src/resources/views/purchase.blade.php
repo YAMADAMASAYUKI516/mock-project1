@@ -10,14 +10,12 @@
 
     <input type="hidden" name="payment_method" value="{{ old('payment_method') }}" id="payment-method-hidden">
 
-    {{-- 住所保持 --}}
     <input type="hidden" name="shipping_postal_code" value="{{ session("shipping_postal_code_{$item->id}") }}">
     <input type="hidden" name="shipping_address1" value="{{ session("shipping_address1_{$item->id}") }}">
     <input type="hidden" name="shipping_address2" value="{{ session("shipping_address2_{$item->id}") }}">
 
     <div class="purchase">
         <div class="purchase__inner">
-            {{-- 左カラム --}}
             <div class="purchase__left">
                 <div class="purchase__product">
                     <img src="{{ asset('storage/items-image/' . basename($item->image_path)) }}" alt="{{ $item->name }}" class="purchase__image">
@@ -29,7 +27,6 @@
 
                 <hr>
 
-                {{-- 支払い方法 --}}
                 <div class="purchase__section">
                     <h3 class="purchase__section-title">支払い方法</h3>
                     <select name="payment_method" class="purchase__select" required>
@@ -44,7 +41,6 @@
 
                 <hr>
 
-                {{-- 配送先 --}}
                 <div class="purchase__section">
                     <div class="purchase__section-header">
                         <h3 class="purchase__section-title">配送先</h3>
@@ -76,7 +72,6 @@
                 <hr>
             </div>
 
-            {{-- 右カラム --}}
             <div class="purchase__right">
                 <div class="purchase__summary">
                     <div class="purchase__summary-row">
