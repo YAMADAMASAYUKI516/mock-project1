@@ -123,6 +123,14 @@ php artisan migrate --env=testing
 php artisan test
 ```
 
+## 出品者の設定
+
+```text
+名前：seller
+メールアドレス：seller@a.com
+パスワード：seller01
+```
+
 ## Stripe のカード情報（動作確認用）
 
 ```text
