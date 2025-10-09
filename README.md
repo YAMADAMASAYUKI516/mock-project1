@@ -12,7 +12,7 @@
 
 1. `docker-compose exec php bash`
 2. `composer install`
-3. 「.env.example」ファイルを 「.env」ファイルに命名を変更。または、新しく.env ファイルを作成
+3. 「.env.example」ファイルを「.env」としてコピーまたはリネーム
 4. .env に以下の環境変数を追加
 
 ```text
@@ -32,12 +32,12 @@ MAIL_USERNAME=null
 MAIL_PASSWORD=null
 MAIL_ENCRYPTION=null
 MAIL_FROM_ADDRESS=example@example.com
-MAIL_FROM_NAME="Tester"
+MAIL_FROM_NAME=Tester
 ```
 
 ```text
-STRIPE_KEY=pk_test_あなたのキーをここに貼り付けてください
-STRIPE_SECRET=sk_test_あなたのキーをここに貼り付けてください
+STRIPE_KEY=pk_test_あなたのキーをここに貼り付けてください （公開鍵）
+STRIPE_SECRET=sk_test_あなたのキーをここに貼り付けてください （秘密鍵）
 ```
 
 5. アプリケーションキーの作成
@@ -153,3 +153,4 @@ php artisan test
 
 - 開発環境：http://localhost/
 - phpMyAdmin：http://localhost:8080/
+- Mailhog： http://localhost:8025/
