@@ -101,12 +101,14 @@ class ListingTest extends TestCase
     /** @test */
     public function mylist_uncertified()
     {
-        $likedItem = Item::factory()->create();
+        $item = Item::factory()->create([
+            'name' => 'テスト商品',
+        ]);
 
         $response = $this->get('/?tab=mylist');
 
         $response->assertStatus(200);
-        $response->assertDontSeeText($likedItem->name);
+        $response->assertDontSeeText('テスト商品');
     }
 
     /** @test */
