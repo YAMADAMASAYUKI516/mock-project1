@@ -123,12 +123,22 @@ php artisan migrate --env=testing
 php artisan test
 ```
 
-## 出品者の設定
+## ダミーユーザーデータの設定
 
 ```text
-名前：seller
-メールアドレス：seller@a.com
-パスワード：seller01
+パスワード（全員）：password
+
+出品者1
+名前：seller1
+メールアドレス：seller1@example.com
+
+出品者1
+名前：seller2
+メールアドレス：seller2@example.com
+
+非出品者
+名前：buyer
+メールアドレス：buyer@example.com
 ```
 
 ## Stripe のカード情報（動作確認用）
