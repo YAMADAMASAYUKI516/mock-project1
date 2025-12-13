@@ -68,7 +68,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($item);
 
         $item = [
-            'seller_id' => '1',
+            'seller_id' => '2',
             'name' => 'マイク',
             'price' => '8000',
             'brand' => 'なし',
@@ -79,7 +79,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($item);
 
         $item = [
-            'seller_id' => '1',
+            'seller_id' => '2',
             'name' => 'ショルダーバッグ',
             'price' => '3500',
             'description' => 'おしゃれなショルダーバッグ',
@@ -89,7 +89,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($item);
 
         $item = [
-            'seller_id' => '1',
+            'seller_id' => '2',
             'name' => 'タンブラー',
             'price' => '500',
             'brand' => 'なし',
@@ -100,7 +100,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($item);
 
         $item = [
-            'seller_id' => '1',
+            'seller_id' => '2',
             'name' => 'コーヒーミル',
             'price' => '4000',
             'brand' => 'Starbacks',
@@ -111,7 +111,7 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert($item);
 
         $item = [
-            'seller_id' => '1',
+            'seller_id' => '2',
             'name' => 'メイクセット',
             'price' => '2500',
             'description' => '便利なメイクアップセット',

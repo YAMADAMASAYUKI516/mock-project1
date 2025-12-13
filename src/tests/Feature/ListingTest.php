@@ -111,6 +111,7 @@ class ListingTest extends TestCase
         $response->assertDontSeeText('テスト商品');
     }
 
+
     /** @test */
     public function search_partial_match()
     {

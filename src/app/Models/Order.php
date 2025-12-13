@@ -20,4 +20,14 @@ class Order extends Model
     {
         return $this->belongsTo(User::class, 'buyer_id');
     }
+
+    public function tradeMessages()
+    {
+        return $this->hasMany(TradeMessage::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

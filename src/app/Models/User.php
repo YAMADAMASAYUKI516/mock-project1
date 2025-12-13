@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Order;
+use App\Models\TradeMessage;
+use App\Models\Review;
+use App\Models\Item;
+
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -65,5 +70,20 @@ class User extends Authenticatable implements MustVerifyEmail
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function sentTradeMessages()
+    {
+        return $this->hasMany(TradeMessage::class, 'sender_id');
+    }
+
+    public function receivedReviews()
+    {
+        return $this->hasMany(Review::class, 'rated_user_id');
+    }
+
+    public function givenReviews()
+    {
+        return $this->hasMany(Review::class, 'rater_id');
     }
 }

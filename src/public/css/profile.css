@@ -36,6 +36,41 @@
     font-weight: bold;
 }
 
+.profile__rating {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profile__rating-label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.profile__rating-stars {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.profile__rating-star {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: url('../images/review_star.png') no-repeat center / contain;
+}
+
+.profile__rating-star--filled {
+    background-image: url('../images/review_star_filled.png');
+}
+
+.profile__rating-count {
+    font-size: 12px;
+    color: #666;
+    margin-left: 4px;
+}
+
 .profile__edit-button {
     padding: 10px 20px;
     font-size: 26px;
@@ -56,6 +91,9 @@
 }
 
 .profile__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     margin-left: 80px;
     padding-bottom: 5px;
     font-weight: bold;
@@ -66,6 +104,22 @@
 
 .profile__tab.active {
     color: #FF0000;
+}
+
+.profile__tab-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 27px;
+    height: 26px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background: #FF0000;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
 }
 
 .profile__items {
@@ -118,4 +172,30 @@
 .profile__item-name {
     font-size: 25px;
     margin-top: 10px;
+}
+
+.profile__item-card--trading {
+    position: relative;
+}
+
+.profile__notification-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 6px;
+    border-radius: 12px;
+    background: #FF5555;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 24px;
+}
+
+.profile__empty {
+    padding: 40px 50px;
+    font-size: 16px;
+    color: #777;
 }

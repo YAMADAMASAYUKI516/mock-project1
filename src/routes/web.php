@@ -11,6 +11,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TradeController;
 
 // トップ画面（誰でも）
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
@@ -70,4 +71,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // 出品
     Route::get('/exhibition', [ItemController::class, 'create'])->name('items.create');
     Route::post('/items', [ItemController::class, 'store'])->name('items.store');
+
+    // 取引
+    Route::get('/trade/{order}', [TradeController::class, 'show'])->name('trade.show');
+    Route::post('/trade/{order}/message', [TradeController::class, 'store'])->name('trade.message.store');
+
+    Route::put('/trade/message/{message}', [TradeController::class, 'update'])->name('trade.message.update');
+    Route::delete('/trade/message/{message}', [TradeController::class, 'destroy'])->name('trade.message.destroy');
+
+    Route::post('/trade/{order}/review', [TradeController::class, 'review'])->name('trade.review');
 });
