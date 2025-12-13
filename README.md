@@ -132,7 +132,7 @@ php artisan test
 名前：seller1
 メールアドレス：seller1@example.com
 
-出品者1
+出品者2
 名前：seller2
 メールアドレス：seller2@example.com
 
