@@ -17,7 +17,7 @@
 
             <a
                 href="{{ route('trade.show', ['order' => $tradingOrder->id]) }}"
-                class="trade__sidebar-item {{ $isActive ? 'trade__sidebar-item--active' : '' }}"
+                class="trade__sidebar-item"
             >
                 <div class="trade__sidebar-item-name">
                     {{ $tradingOrder->item->name }}

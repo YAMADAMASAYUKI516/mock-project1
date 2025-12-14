@@ -66,7 +66,6 @@
                     @endif
                 </a>
             @empty
-                <p class="profile__empty"></p>
             @endforelse
         </div>
     @else
@@ -84,7 +83,6 @@
                     <div class="profile__item-name">{{ $item->name }}</div>
                 </a>
             @empty
-                <p class="profile__empty"></p>
             @endforelse
         </div>
     @endif

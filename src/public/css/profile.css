@@ -43,11 +43,6 @@
     gap: 8px;
 }
 
-.profile__rating-label {
-    font-size: 14px;
-    font-weight: bold;
-}
-
 .profile__rating-stars {
     display: flex;
     align-items: center;
@@ -63,12 +58,6 @@
 
 .profile__rating-star--filled {
     background-image: url('../images/review_star_filled.png');
-}
-
-.profile__rating-count {
-    font-size: 12px;
-    color: #666;
-    margin-left: 4px;
 }
 
 .profile__edit-button {
@@ -192,10 +181,4 @@
     font-weight: bold;
     text-align: center;
     line-height: 24px;
-}
-
-.profile__empty {
-    padding: 40px 50px;
-    font-size: 16px;
-    color: #777;
 }
