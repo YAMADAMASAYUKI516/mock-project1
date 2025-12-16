@@ -15,7 +15,7 @@ class TradeMessageRequest extends FormRequest
     {
         return [
             'body'  => ['required', 'string', 'max:400'],
-            'image' => ['nullable', 'file', 'mimes:jpeg,png'],
+            'image' => ['nullable', 'file', 'mimes:jpg,jpeg,png'],
         ];
     }
 

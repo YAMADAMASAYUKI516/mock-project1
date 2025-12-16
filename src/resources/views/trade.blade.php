@@ -119,8 +119,10 @@
                                                 type="file"
                                                 name="image"
                                                 class="trade__file-input"
-                                                accept=".jpeg,.jpg,.png"
                                             >
+                                            @error('image')
+                                                <p class="trade__field-error">{{ $message }}</p>
+                                            @enderror
                                         </div>
 
                                         <div class="trade__form-actions trade__form-actions--edit">
@@ -208,7 +210,6 @@
                             type="file"
                             name="image"
                             class="trade__file-input trade__file-input--hidden"
-                            accept=".jpeg,.jpg,.png"
                         >
 
                         <button type="submit" class="trade__submit-button trade__submit-button--icon">

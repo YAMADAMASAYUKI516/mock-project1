@@ -1,3 +1,6 @@
+/* =========================
+   Header
+========================= */
 .header {
     display: flex;
     align-items: center;
@@ -11,19 +14,24 @@
     align-items: center;
     justify-content: space-between;
     height: 100%;
-    width: 95%;
+    width: 100%;
     max-width: 1540px;
-    min-width: 1400px;
     margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
-.header__logo a {
-    display: inline-block;
-    font-size: 24px;
-    font-weight: bold;
-    color: #fff;
+.header__logo {
+    display: flex;
+    align-items: center;
     text-decoration: none;
     white-space: nowrap;
+}
+
+.header__logo img {
+    display: block;
+    height: 32px;
+    width: auto;
 }
 
 .header__search-form {
@@ -42,10 +50,10 @@
     color: #000;
     border: none;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
 .header__search-input::placeholder {
-    padding-left: 30px;
     color: #000;
 }
 
@@ -70,7 +78,6 @@
     color: #fff;
     background: none;
     border: none;
-    text-decoration: none;
     cursor: pointer;
 }
 
@@ -85,4 +92,48 @@
     border-radius: 4px;
     text-align: center;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================
+   Tablet (768-850px)
+========================= */
+@media (max-width: 850px) {
+    .header__inner {
+        min-width: 0;
+        width: 100%;
+        padding: 0 12px;
+        gap: 12px;
+    }
+
+    .header__search-form {
+        margin: 0 12px;
+    }
+
+    .header__search-input {
+        max-width: none;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .header__nav {
+        gap: 12px;
+    }
+
+    .header__link,
+    .header__button-logout {
+        font-size: 16px;
+    }
+
+    .header__button-listing {
+        width: 72px;
+        height: 40px;
+        font-size: 16px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
 }

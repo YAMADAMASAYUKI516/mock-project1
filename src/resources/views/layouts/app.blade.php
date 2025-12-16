@@ -20,7 +20,11 @@
             </a>
 
             {{-- ログイン・会員登録ページではロゴだけ表示 --}}
-            @if (Request::is('login') || Request::is('register'))
+            @if (
+                Request::is('login') ||
+                Request::is('register') ||
+                Request::routeIs('trade.*')
+            )
                 {{-- ロゴのみ --}}
             @else
                 <form class="header__search-form" action="{{ route('items.index') }}" method="GET">

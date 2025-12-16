@@ -151,8 +151,8 @@ class TradeController extends Controller
         [$isSeller, $isBuyer, $sellerId] = $this->resolveRoles($user, $order);
         $this->authorizeTrade($isSeller, $isBuyer);
 
-        if ($isBuyer && Review::where('order_id', $order->id)->where('rater_id', $user->id)->exists()) {
-            return redirect()->route('trade.show', ['order' => $order->id]);
+        if (Review::where('order_id', $order->id)->where('rater_id', $user->id)->exists()) {
+            return redirect()->route('items.index');
         }
 
         $validated = $request->validate([
@@ -164,27 +164,34 @@ class TradeController extends Controller
             'rating.max'      => '評価は5以下を選択してください',
         ]);
 
-        $rating = (int) $validated['rating'];
+        $rating  = (int) $validated['rating'];
+        $buyerId = $order->buyer_id;
+
+        $raterId = $user->id;
 
         if ($isBuyer) {
-            $raterId     = $user->id;
             $ratedUserId = $sellerId;
 
             if (! $ratedUserId) {
                 return back()->withErrors(['rating' => '出品者IDが取得できません。']);
             }
-
-            $order->status       = 'completed';
-            $order->completed_at = now();
-            $order->save();
-
-            $seller = $order->item?->seller;
-            if ($seller && $seller->email) {
-                Mail::to($seller->email)->send(new TradeCompletedMail($order));
-            }
         } else {
-            $raterId     = $user->id;
-            $ratedUserId = $order->buyer_id;
+            $buyerReviewExists = Review::where('order_id', $order->id)
+                ->where('rater_id', $buyerId)
+                ->where('rated_user_id', $sellerId)
+                ->exists();
+
+            if (! $buyerReviewExists) {
+                return redirect()
+                    ->route('trade.show', ['order' => $order->id])
+                    ->withErrors(['rating' => '購入者の取引完了後に評価できます。']);
+            }
+
+            $ratedUserId = $buyerId;
+
+            if (! $ratedUserId) {
+                return back()->withErrors(['rating' => '購入者IDが取得できません。']);
+            }
         }
 
         Review::updateOrCreate(
@@ -197,6 +204,29 @@ class TradeController extends Controller
                 'rating' => $rating,
             ]
         );
+
+        if ($isBuyer) {
+            $seller = $order->item?->seller;
+            if ($seller && $seller->email) {
+                Mail::to($seller->email)->send(new TradeCompletedMail($order));
+            }
+        }
+
+        $buyerReviewExists = Review::where('order_id', $order->id)
+            ->where('rater_id', $buyerId)
+            ->where('rated_user_id', $sellerId)
+            ->exists();
+
+        $sellerReviewExists = Review::where('order_id', $order->id)
+            ->where('rater_id', $sellerId)
+            ->where('rated_user_id', $buyerId)
+            ->exists();
+
+        if ($buyerReviewExists && $sellerReviewExists) {
+            $order->status       = 'completed';
+            $order->completed_at = now();
+            $order->save();
+        }
 
         return redirect('/');
     }

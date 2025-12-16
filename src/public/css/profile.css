@@ -7,8 +7,10 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    width: 1017px;
+    width: 100%;
+    max-width: 1017px;
     margin: 50px auto;
+    box-sizing: border-box;
 }
 
 .profile__avatar {
@@ -16,6 +18,7 @@
     height: 150px;
     border-radius: 50%;
     background-color: #D9D9D9;
+    flex-shrink: 0;
 }
 
 .profile__avatar-image {
@@ -29,6 +32,7 @@
 .profile__user-info {
     flex: 1;
     padding-left: 80px;
+    box-sizing: border-box;
 }
 
 .profile__username {
@@ -68,6 +72,7 @@
     text-decoration: none;
     border: 2px solid #FF5555;
     border-radius: 10px;
+    white-space: nowrap;
 }
 
 .profile__tabs {
@@ -77,18 +82,19 @@
     border-bottom: 2px solid #5F5F5F;
     padding-left: 50px;
     margin-top: 40px;
+    box-sizing: border-box;
 }
 
 .profile__tab {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    margin-left: 80px;
     padding-bottom: 5px;
     font-weight: bold;
     color: #5F5F5F;
     text-decoration: none;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .profile__tab.active {
@@ -116,6 +122,7 @@
     grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
     gap: 40px;
     padding: 50px;
+    box-sizing: border-box;
 }
 
 .profile__item-card {
@@ -129,7 +136,8 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 290px;
+    width: 100%;
+    max-width: 290px;
     aspect-ratio: 1 / 1;
     background-color: #D9D9D9;
 }
@@ -181,4 +189,87 @@
     font-weight: bold;
     text-align: center;
     line-height: 24px;
+}
+
+/* =========================
+   Tablet (768-850px)
+========================= */
+@media (max-width: 850px) {
+    .profile {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .profile__header {
+        width: 100%;
+        margin: 24px auto;
+        padding: 0 16px;
+        box-sizing: border-box;
+        gap: 12px;
+    }
+
+    .profile__avatar,
+    .profile__avatar-image {
+        width: 96px;
+        height: 96px;
+    }
+
+    .profile__user-info {
+        padding-left: 0;
+    }
+
+    .profile__username {
+        font-size: 24px;
+    }
+
+    .profile__rating-star {
+        width: 28px;
+        height: 28px;
+    }
+
+    .profile__edit-button {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+
+    .profile__tabs {
+        padding: 0 16px;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .profile__tab {
+        margin-left: 0;
+        font-size: 16px;
+    }
+
+    .profile__tab-badge {
+        min-width: 22px;
+        height: 22px;
+        font-size: 14px;
+        padding: 0 6px;
+        border-radius: 999px;
+    }
+
+    .profile__items {
+        padding: 16px;
+        gap: 16px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .profile__item-image {
+        width: 100%;
+    }
+
+    .profile__item-name {
+        font-size: 16px;
+    }
+
+    .profile__notification-badge {
+        min-width: 22px;
+        height: 22px;
+        line-height: 22px;
+        font-size: 12px;
+        padding: 0 6px;
+    }
 }

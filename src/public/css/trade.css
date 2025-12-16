@@ -89,6 +89,7 @@
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .trade__item {
@@ -263,7 +264,7 @@
 }
 
 .trade__error-item {
-    font-size: 13px;
+    font-size: 16px;
     color: #d9534f;
 }
 
@@ -313,6 +314,13 @@
 
 .trade__file-input--hidden {
     display: none;
+}
+
+.trade__field-error {
+    margin-top: 6px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #d9534f;
 }
 
 .trade__submit-button {
@@ -365,6 +373,7 @@
     border-radius: 15px;
     border: solid 1px;
     background: #FDFCE6;
+    box-sizing: border-box;
 }
 
 .trade__modal-title {
@@ -412,4 +421,144 @@
     color: #fff;
     font-size: 24px;
     cursor: pointer;
+}
+
+/* =========================
+   Tablet (768-850px)
+========================= */
+@media (max-width: 850px) {
+    .trade {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .trade {
+        flex-direction: column;
+    }
+
+    .trade__sidebar {
+        width: 100%;
+        min-height: auto;
+        padding: 16px;
+        text-align: center;
+    }
+
+    .trade__sidebar-item {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .trade__main {
+        padding: 16px;
+    }
+
+    .trade__header {
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .trade__header-left {
+        gap: 10px;
+    }
+
+    .trade__header-avatar {
+        width: 44px;
+        height: 44px;
+    }
+
+    .trade__header-title {
+        font-size: 20px;
+        line-height: 1.3;
+        word-break: break-word;
+    }
+
+    .trade__complete-button {
+        font-size: 16px;
+        padding: 8px 14px;
+        border-radius: 18px;
+        white-space: nowrap;
+    }
+
+    .trade__item {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .trade__item-image img {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+    }
+
+    .trade__item-name {
+        font-size: 24px;
+    }
+
+    .trade__item-price {
+        font-size: 18px;
+    }
+
+    .trade__message-content {
+        min-width: 0;
+        max-width: calc(100% - 52px);
+    }
+
+    .trade__message-header {
+        font-size: 14px;
+    }
+
+    .trade__message-text {
+        font-size: 16px;
+    }
+
+    .trade__message-body {
+        font-size: 14px;
+    }
+
+    .trade__message-image img {
+        width: 100%;
+        max-width: 240px;
+    }
+
+    .trade__form-row {
+        gap: 8px;
+    }
+
+    .trade__textarea {
+        font-size: 16px;
+    }
+
+    .trade__image-button {
+        width: 110px;
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+
+    .trade__submit-button--icon img {
+        width: 44px;
+    }
+
+    .trade__modal-content {
+        width: calc(100% - 32px);
+        max-width: 520px;
+    }
+
+    .trade__star {
+        width: 64px;
+        height: 64px;
+    }
+
+    .trade__modal-title {
+        font-size: 22px;
+    }
+
+    .trade__modal-text {
+        font-size: 14px;
+    }
+
+    .trade__modal-submit {
+        font-size: 18px;
+        padding: 8px 12px;
+    }
 }
