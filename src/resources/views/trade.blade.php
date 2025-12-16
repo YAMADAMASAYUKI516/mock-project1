@@ -225,6 +225,9 @@
 
             <div class="trade__modal-content">
                 <h2 class="trade__modal-title">取引が完了しました。</h2>
+
+                <div class="trade__modal-divider"></div>
+
                 <p class="trade__modal-text">今回の取引相手はどうでしたか？</p>
 
                 <form action="{{ route('trade.review', ['order' => $order->id]) }}" method="POST" class="trade__modal-form">
@@ -242,11 +245,14 @@
                         <input type="hidden" name="rating" id="rating-input" value="{{ old('rating') }}">
                     </div>
 
+                    <div class="trade__modal-divider"></div>
+
                     <div class="trade__modal-actions">
                         <button type="submit" class="trade__modal-submit">送信する</button>
                     </div>
                 </form>
             </div>
+
         </div>
 
     </main>
